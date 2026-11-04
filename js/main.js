@@ -1,4 +1,4 @@
-/* Markhor Trips — home page interactions. Vanilla JS, no dependencies. */
+/* Markhor Trips home page interactions. Vanilla JS, no dependencies. */
 (function () {
   'use strict';
 
@@ -165,8 +165,8 @@
     var v = {};
     pax.querySelectorAll('output').forEach(function (o) { v[o.name] = +o.value; });
     var total = v.adults + v.children + v.infants;
-    var txt = total === 1 ? '1 Adult' : total + ' Travellers';
-    paxSummary.textContent = txt + ' · ' + cabin.value;
+    var txt = total === 1 ? '1 adult' : total + ' travellers';
+    paxSummary.textContent = txt + ', ' + cabin.value;
     pax.querySelectorAll('.stepper').forEach(function (s) {
       var o = s.querySelector('output'), b = s.querySelectorAll('button');
       b[0].disabled = +o.value <= +s.dataset.min;
