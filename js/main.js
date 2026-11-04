@@ -14,8 +14,37 @@
 
   /* ---------- Sticky header state ---------- */
   var header = document.getElementById('header');
-  var onScroll = function () { header.classList.toggle('is-scrolled', window.scrollY > 8); };
-  window.addEventListener('scroll', onScroll, { passive: true });
+  var progress = document.querySelector('.progress span');
+  var wa = document.querySelector('.wa-float');
+  var lastY = window.scrollY, ticking = false;
+  function onScroll() {
+    var y = window.scrollY;
+    header.classList.toggle('is-scrolled', y > 8);
+    // hide header when scrolling down past the hero, reveal on scroll up
+    header.classList.toggle('is-hidden', y > 600 && y > lastY && !document.querySelector('.pax:not([hidden])'));
+    lastY = y;
+    var max = document.documentElement.scrollHeight - innerHeight;
+    if (progress) progress.style.transform = 'scaleX(' + (max > 0 ? y / max : 0) + ')';
+    if (wa) wa.classList.toggle('is-visible', y > 500);
+    parallax();
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+
+  /* ---------- Parallax ---------- */
+  var heroMedia = document.querySelector('[data-parallax-hero]');
+  var parallaxEls = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
+  function parallax() {
+    if (reduceMotion) return;
+    var y = window.scrollY;
+    if (heroMedia && y < innerHeight * 1.2) heroMedia.style.setProperty('--py', (y * 0.35).toFixed(1) + 'px');
+    parallaxEls.forEach(function (el) {
+      var r = el.parentElement.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > innerHeight) return;
+      var off = (r.top + r.height / 2 - innerHeight / 2) * -parseFloat(el.getAttribute('data-parallax'));
+      el.style.transform = 'translate3d(0,' + off.toFixed(1) + 'px,0)';
+    });
+  }
   onScroll();
 
   /* ---------- Mobile drawer ---------- */
@@ -40,9 +69,7 @@
   /* ---------- Hero slideshow ---------- */
   var hero = document.querySelector('[data-hero]');
   var slides = hero ? hero.querySelectorAll('.hero-slide') : [];
-  var dots = document.querySelectorAll('.hero-dot');
-  var capTitle = document.querySelector('[data-hero-title]');
-  var capLabel = document.querySelector('[data-hero-label]');
+  var dots = document.querySelectorAll('.hero-thumb');
   var current = 0, timer;
 
   function hydrate(slide) {
@@ -60,8 +87,6 @@
     hydrate(slides[current]);
     slides[current].classList.add('is-active');
     if (dots[current]) { void dots[current].offsetWidth; dots[current].classList.add('is-active'); }
-    if (capTitle) capTitle.textContent = slides[current].getAttribute('data-caption');
-    if (capLabel) capLabel.textContent = slides[current].getAttribute('data-label');
     hydrate(slides[(current + 1) % slides.length]);
   }
   function start() { clearInterval(timer); timer = setInterval(function () { show(current + 1); }, 7000); }
@@ -183,17 +208,87 @@
     });
   });
 
+  /* ---------- Split headings into words ---------- */
+  document.querySelectorAll('.split').forEach(function (el) {
+    var i = 0;
+    (function walk(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+        if (n.nodeType === 3) {
+          var frag = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(function (part) {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+            var w = document.createElement('span'); w.className = 'w';
+            var s = document.createElement('span'); s.textContent = part; s.style.setProperty('--wi', i++);
+            w.appendChild(s); frag.appendChild(w);
+          });
+          n.parentNode.replaceChild(frag, n);
+        } else if (n.nodeType === 1 && n.tagName !== 'BR') walk(n);
+      });
+    })(el);
+    el.setAttribute('aria-label', el.textContent.replace(/\s+/g, ' ').trim());
+    if (!el.closest('.reveal')) el.classList.add('reveal');
+  });
+
+  /* ---------- Stagger children ---------- */
+  document.querySelectorAll('[data-stagger]').forEach(function (group) {
+    Array.prototype.slice.call(group.children).forEach(function (child, i) {
+      child.classList.add('reveal');
+      child.style.setProperty('--rd', (i % 6) * 0.09 + 's');
+    });
+  });
+
+  /* ---------- Count-up numbers ---------- */
+  function countUp(el) {
+    var end = +el.getAttribute('data-count'), t0 = null;
+    function step(t) {
+      if (!t0) t0 = t;
+      var p = Math.min((t - t0) / 1600, 1), e = 1 - Math.pow(1 - p, 4);
+      el.textContent = Math.round(end * e);
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
   /* ---------- Reveal on scroll ---------- */
   var reveals = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && !reduceMotion) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
-        if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
+        if (en.isIntersecting) {
+          en.target.classList.add('is-in'); io.unobserve(en.target);
+          en.target.querySelectorAll('[data-count]').forEach(countUp);
+        }
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
     reveals.forEach(function (el) { io.observe(el); });
   } else {
     reveals.forEach(function (el) { el.classList.add('is-in'); });
+  }
+
+  /* ---------- Package card tilt ---------- */
+  if (!reduceMotion && window.matchMedia('(hover: hover)').matches) {
+    document.querySelectorAll('.pkg').forEach(function (card) {
+      card.addEventListener('mousemove', function (e) {
+        var r = card.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+        card.style.setProperty('--ry', ((x - .5) * 6).toFixed(2) + 'deg');
+        card.style.setProperty('--rx', ((.5 - y) * 6).toFixed(2) + 'deg');
+        card.style.setProperty('--gx', (x * 100) + '%');
+        card.style.setProperty('--gy', (y * 100) + '%');
+      });
+      card.addEventListener('mouseleave', function () { card.style.setProperty('--rx', '0deg'); card.style.setProperty('--ry', '0deg'); });
+    });
+
+    /* Floating preview that follows the cursor on the routes board */
+    document.querySelectorAll('.route-row').forEach(function (row) {
+      var prev = row.querySelector('.route-preview');
+      row.addEventListener('mouseenter', function () { row.classList.add('is-hover'); });
+      row.addEventListener('mouseleave', function () { row.classList.remove('is-hover'); });
+      row.addEventListener('mousemove', function (e) {
+        prev.style.setProperty('--x', e.clientX + 'px');
+        prev.style.setProperty('--y', e.clientY + 'px');
+      });
+    });
   }
 
   /* ---------- Footer year ---------- */
