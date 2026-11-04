@@ -102,6 +102,7 @@
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
+  <div class="progress" aria-hidden="true"><span></span></div>
 
   <!-- SVG icon sprite -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -208,7 +209,7 @@
   <main id="main">
     <!-- ===================== Hero ===================== -->
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-media" data-hero>
+      <div class="hero-media" data-hero data-parallax-hero>
         <figure class="hero-slide is-active" data-caption="Alpine lakes" data-label="Summer in the mountains">
           <img src="images/hero/alpine-lake-2400.webp"
                srcset="images/hero/alpine-lake-mobile.webp 720w, images/hero/alpine-lake-1280.webp 1280w, images/hero/alpine-lake-2400.webp 2400w"
@@ -227,31 +228,24 @@
       </div>
 
       <div class="container hero-inner">
-        <div class="hero-copy">
-          <span class="eyebrow">IATA-accredited · Sharjah, UAE</span>
-          <h1 id="hero-title" class="display">Journeys, <em>thoughtfully</em> arranged.</h1>
-          <p class="hero-sub">Flights on 450+ airlines, hand-picked hotels, visas and Umrah — planned by people who answer at 3am, and paid for in instalments if you like.</p>
-          <div class="hero-meta">
-            <span class="chip"><svg class="icon"><use href="#i-headset"/></svg>24/7 human support</span>
-            <span class="chip"><svg class="icon"><use href="#i-shield"/></svg>Secure SSL checkout</span>
-            <span class="chip"><svg class="icon"><use href="#i-sparkle"/></svg>Pay later with Tabby &amp; Tamara</span>
+        <div class="hero-top">
+          <div class="hero-copy">
+            <span class="eyebrow hero-anim" style="--d:.1s">IATA-accredited travel · Sharjah, UAE</span>
+            <h1 id="hero-title" class="display hero-title">
+              <span class="line"><span style="--d:.2s">Journeys, <em>thoughtfully</em></span></span>
+              <span class="line"><span style="--d:.32s">arranged.</span></span>
+            </h1>
+            <p class="hero-sub hero-anim" style="--d:.5s">Flights on 450+ airlines, hand-picked hotels, visas and Umrah — planned by people who pick up at 3am.</p>
+          </div>
+          <div class="hero-thumbs hero-anim" style="--d:.7s" role="group" aria-label="Featured scenes">
+            <button class="hero-thumb is-active" type="button" aria-label="Show alpine lakes"><img src="images/hero/alpine-lake-thumb.webp" alt="" width="480" height="160"><span><small>Summer escapes</small>Alpine lakes</span><i></i></button>
+            <button class="hero-thumb" type="button" aria-label="Show lakeside villages"><img src="images/hero/lakeside-village-thumb.webp" alt="" width="480" height="160"><span><small>Golden hour</small>Lakeside villages</span><i></i></button>
+            <button class="hero-thumb" type="button" aria-label="Show overwater escapes"><img src="images/hero/overwater-resort-thumb.webp" alt="" width="480" height="150"><span><small>Island resorts</small>Overwater villas</span><i></i></button>
           </div>
         </div>
-      </div>
 
-      <div class="hero-caption" aria-hidden="true">
-        <span class="hero-caption-label" data-hero-label>Summer in the mountains</span>
-        <span class="hero-caption-title" data-hero-title>Alpine lakes</span>
-        <div class="hero-dots">
-          <button class="hero-dot is-active" tabindex="-1"></button>
-          <button class="hero-dot" tabindex="-1"></button>
-          <button class="hero-dot" tabindex="-1"></button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================== Search ===================== -->
-    <div class="container search-wrap">
+        <!-- ===================== Search ===================== -->
+        <div class="hero-search hero-anim" style="--d:.6s">
       <div class="search" id="search">
         <div class="search-tabs" role="tablist" aria-label="What would you like to book?">
           <button class="search-tab" role="tab" id="tab-flight" aria-controls="panel-flight" aria-selected="true"><svg class="icon"><use href="#i-plane"/></svg>Flights</button>
@@ -375,13 +369,15 @@
           </form>
         </div>
       </div>
-    </div>
+        </div>
+      </div>
+    </section>
 
     <!-- ===================== Trust stats ===================== -->
     <section class="trust" aria-label="Markhor Trips in numbers">
       <div class="container">
-        <div class="stats reveal">
-          <div class="stat"><div class="stat-num">450<sup>+</sup></div><p>Airlines bookable in one search</p></div>
+        <div class="stats" data-stagger>
+          <div class="stat"><div class="stat-num"><span data-count="450">450</span><sup>+</sup></div><p>Airlines bookable in one search</p></div>
           <div class="stat"><div class="stat-num">24/7</div><p>Phone, WhatsApp &amp; email support</p></div>
           <div class="stat"><div class="stat-num">IATA</div><p>Accredited agent, licensed in the UAE</p></div>
           <div class="stat"><div class="stat-num">0<sup>%</sup></div><p>Interest instalments via Tabby &amp; Tamara</p></div>
@@ -395,13 +391,13 @@
         <div class="section-head reveal">
           <div>
             <span class="eyebrow">Everything, one desk</span>
-            <h2 id="services-title" class="display h2">Every part of the trip, <em>handled</em>.</h2>
+            <h2 id="services-title" class="display h2 split">Every part of the trip, <em>handled</em>.</h2>
           </div>
           <p class="lead">From a last-minute ticket home to a family Umrah or a honeymoon in Phuket — one team, one booking, one number to call.</p>
         </div>
 
-        <div class="bento">
-          <a class="tile tile-feature reveal" href="https://www.markhortrips.com/Cms?type=flight">
+        <div class="bento" data-stagger>
+          <a class="tile tile-feature" href="https://www.markhortrips.com/Cms?type=flight">
             <div class="tile-icon"><svg class="icon"><use href="#i-plane"/></svg></div>
             <svg class="route-art" viewBox="0 0 360 200" fill="none" aria-hidden="true">
               <path d="M20 170C90 40 230 20 340 60" stroke="rgba(255,255,255,.45)" stroke-width="1.5"/>
@@ -420,36 +416,36 @@
             <div class="tile-foot"><span class="tile-tag">Search live fares</span><span class="tile-arrow"><svg class="icon"><use href="#i-arrow-up-right"/></svg></span></div>
           </a>
 
-          <a class="tile tile-half reveal" href="https://www.markhortrips.com/Cms?type=hotel">
+          <a class="tile tile-half" href="https://www.markhortrips.com/Cms?type=hotel">
             <div class="tile-icon"><svg class="icon"><use href="#i-bed"/></svg></div>
             <div><h3>Hotels</h3><p>City stays to beach resorts, worldwide.</p></div>
             <div class="tile-foot"><span class="tile-tag">Worldwide</span><span class="tile-arrow"><svg class="icon"><use href="#i-arrow-up-right"/></svg></span></div>
           </a>
-          <a class="tile tile-half tile-orange reveal" href="https://www.markhortrips.com/Cms/HolidayPackages?destination=umrah-package">
+          <a class="tile tile-half tile-orange" href="https://www.markhortrips.com/Cms/HolidayPackages?destination=umrah-package">
             <div class="tile-icon"><svg class="icon"><use href="#i-kaaba"/></svg></div>
             <div><h3>Umrah</h3><p>By bus or air, visa included.</p></div>
             <div class="tile-foot"><span class="tile-tag">From AED 1,140</span><span class="tile-arrow"><svg class="icon"><use href="#i-arrow-up-right"/></svg></span></div>
           </a>
-          <a class="tile tile-half tile-warm reveal" href="https://www.markhortrips.com/Cms?type=visa">
+          <a class="tile tile-half tile-warm" href="https://www.markhortrips.com/Cms?type=visa">
             <div class="tile-icon"><svg class="icon"><use href="#i-passport"/></svg></div>
             <div><h3>Visas</h3><p>Saudi, UAE, Schengen and more.</p></div>
             <div class="tile-foot"><span class="tile-tag">Expert checks</span><span class="tile-arrow"><svg class="icon"><use href="#i-arrow-up-right"/></svg></span></div>
           </a>
-          <a class="tile tile-half reveal" href="https://www.markhortrips.com/Cms/HolidayPackages">
+          <a class="tile tile-half" href="https://www.markhortrips.com/Cms/HolidayPackages">
             <div class="tile-icon"><svg class="icon"><use href="#i-compass"/></svg></div>
             <div><h3>Holidays</h3><p>Curated packages, flights included.</p></div>
             <div class="tile-foot"><span class="tile-tag">Signature trips</span><span class="tile-arrow"><svg class="icon"><use href="#i-arrow-up-right"/></svg></span></div>
           </a>
 
-          <a class="tile tile-third reveal" href="https://www.markhortrips.com/Cms/ContactUs">
+          <a class="tile tile-third" href="https://www.markhortrips.com/Cms/ContactUs">
             <div class="tile-icon"><svg class="icon"><use href="#i-umbrella"/></svg></div>
             <div><h3>Travel insurance</h3><p>Medical, cancellation and baggage cover for every itinerary.</p></div>
           </a>
-          <a class="tile tile-third reveal" href="https://www.markhortrips.com/Cms/ContactUs">
+          <a class="tile tile-third" href="https://www.markhortrips.com/Cms/ContactUs">
             <div class="tile-icon"><svg class="icon"><use href="#i-handshake"/></svg></div>
             <div><h3>Meet &amp; assist</h3><p>Fast-track and a friendly face at the airport, arrival or departure.</p></div>
           </a>
-          <a class="tile tile-third tile-warm reveal" href="https://www.markhortrips.com/Cms?type=tour">
+          <a class="tile tile-third tile-warm" href="https://www.markhortrips.com/Cms?type=tour">
             <div class="tile-icon"><svg class="icon"><use href="#i-car"/></svg></div>
             <div><h3>Tours &amp; transfers</h3><p>Desert safaris, city tours and private transfers.</p></div>
           </a>
@@ -463,13 +459,14 @@
         <div class="section-head reveal">
           <div>
             <span class="eyebrow">Signature packages</span>
-            <h2 id="packages-title" class="display h2">Short-haul escapes, <em>beautifully</em> planned.</h2>
+            <h2 id="packages-title" class="display h2 split">Short-haul escapes, <em>beautifully</em> planned.</h2>
           </div>
           <a class="link-arrow" href="https://www.markhortrips.com/Cms/HolidayPackages">View all holidays <svg class="icon icon-sm"><use href="#i-arrow"/></svg></a>
         </div>
 
-        <div class="packages">
-          <a class="pkg reveal" href="https://www.markhortrips.com/Cms/HolidayPackages/thailand-1">
+        <div class="packages" data-stagger>
+          <a class="pkg" href="https://www.markhortrips.com/Cms/HolidayPackages/thailand-1">
+            <span class="pkg-glare" aria-hidden="true"></span>
             <div class="media" data-tone="sea">
               <img src="images/packages/thailand.webp" alt="Limestone cliffs and long-tail boat on turquoise water in Thailand" loading="lazy" width="1200" height="2150" onerror="this.remove()">
             </div>
@@ -489,7 +486,8 @@
             </div>
           </a>
 
-          <a class="pkg reveal" href="https://www.markhortrips.com/Cms/HolidayPackages/armenia">
+          <a class="pkg" href="https://www.markhortrips.com/Cms/HolidayPackages/armenia">
+            <span class="pkg-glare" aria-hidden="true"></span>
             <div class="media" data-tone="dusk">
               <img src="images/packages/armenia.webp" alt="Yerevan old town with Mount Ararat at sunset, Armenia" loading="lazy" width="1200" height="800" onerror="this.remove()">
             </div>
@@ -508,7 +506,8 @@
             </div>
           </a>
 
-          <a class="pkg reveal" href="https://www.markhortrips.com/Cms/HolidayPackages/azerbaijan-1">
+          <a class="pkg" href="https://www.markhortrips.com/Cms/HolidayPackages/azerbaijan-1">
+            <span class="pkg-glare" aria-hidden="true"></span>
             <div class="media" data-tone="forest">
               <img src="images/packages/azerbaijan.webp" alt="Baku Flame Towers and old city skyline at dusk, Azerbaijan" loading="lazy" width="1200" height="800" onerror="this.remove()">
             </div>
@@ -536,15 +535,15 @@
         <div class="section-head reveal">
           <div>
             <span class="eyebrow">Pilgrimage &amp; Saudi travel</span>
-            <h2 id="umrah-title" class="display h2">Umrah, made <em>effortless</em>.</h2>
+            <h2 id="umrah-title" class="display h2 split">Umrah, made <em>effortless</em>.</h2>
           </div>
           <p class="lead">Door-to-door journeys to the Holy Cities, with visas, hotels near the Haram and ground transport arranged by one team.</p>
         </div>
 
-        <div class="spot-grid">
-          <article class="spot-card reveal">
+        <div class="spot-grid" data-stagger>
+          <article class="spot-card">
             <div class="media" data-tone="sand">
-              <img src="images/features/umrah-bus.webp" alt="Comfortable coach on the desert highway towards Makkah at dawn" loading="lazy" width="1600" height="900" onerror="this.remove()">
+              <img src="images/features/umrah-bus.webp" alt="Comfortable coach on the desert highway towards Makkah at dawn" data-parallax="0.08" loading="lazy" width="1600" height="900" onerror="this.remove()">
             </div>
             <div class="spot-card-body">
               <div>
@@ -570,7 +569,7 @@
           </article>
 
           <div class="spot-side">
-            <article class="spot-card visa-card reveal">
+            <article class="spot-card visa-card">
               <div class="visa-row">
                 <div>
                   <span class="eyebrow" style="color:#ffb48a">Saudi Arabia</span>
@@ -594,7 +593,7 @@
                 <a class="btn btn-light" href="https://www.markhortrips.com/Cms/HolidayPackages?destination=saudi-90-days-multiple-entry-visa">Apply now <svg class="icon"><use href="#i-arrow"/></svg></a>
               </div>
             </article>
-            <div class="paylater reveal">
+            <div class="paylater">
               <div class="bnpl" aria-hidden="true"><span class="tabby">tabby</span><span class="tamara">tamara</span></div>
               <p><b>Split it, interest-free.</b> Pay for eligible packages in instalments at checkout.</p>
             </div>
@@ -608,7 +607,7 @@
       <div class="container">
         <div class="stay reveal">
           <div class="media" data-tone="sand">
-            <img src="images/features/uae-staycation.webp" alt="Family relaxing by an infinity pool overlooking the Dubai skyline" loading="lazy" width="1400" height="1000" onerror="this.remove()">
+            <img src="images/features/uae-staycation.webp" alt="Family relaxing by an infinity pool overlooking the Dubai skyline" data-parallax="0.1" loading="lazy" width="1400" height="1000" onerror="this.remove()">
           </div>
           <div class="stay-body">
             <span class="eyebrow">UAE staycations</span>
@@ -633,37 +632,62 @@
         <div class="section-head reveal">
           <div>
             <span class="eyebrow">Popular from the UAE</span>
-            <h2 id="routes-title" class="display h2">Where the UAE is <em>flying</em>.</h2>
+            <h2 id="routes-title" class="display h2 split">Where the UAE is <em>flying</em>.</h2>
           </div>
           <a class="link-arrow" href="https://www.markhortrips.com/Cms?type=flight">Search all flights <svg class="icon icon-sm"><use href="#i-arrow"/></svg></a>
         </div>
-        <div class="routes reveal">
-          <a class="route" href="https://www.markhortrips.com/Cms?type=flight">
-            <div class="media" data-tone="forest"><img src="images/destinations/pakistan.webp" alt="Hunza valley and Karakoram peaks, Pakistan" loading="lazy" width="900" height="1200" onerror="this.remove()"></div>
-            <span class="route-code"><svg class="icon"><use href="#i-plane"/></svg>DXB → KHI · LHE · ISB</span>
-            <h3>Pakistan</h3><p>Daily direct flights</p>
-          </a>
-          <a class="route" href="https://www.markhortrips.com/Cms?type=flight">
-            <div class="media" data-tone="sea"><img src="images/destinations/bangladesh.webp" alt="Tea gardens in Sylhet, Bangladesh" loading="lazy" width="900" height="1200" onerror="this.remove()"></div>
-            <span class="route-code"><svg class="icon"><use href="#i-plane"/></svg>DXB → DAC · CGP</span>
-            <h3>Bangladesh</h3><p>Dhaka, Chattogram &amp; Sylhet</p>
-          </a>
-          <a class="route" href="https://www.markhortrips.com/Cms?type=flight">
-            <div class="media" data-tone="dusk"><img src="images/destinations/turkey.webp" alt="Hot-air balloons over Cappadocia at sunrise, Turkey" loading="lazy" width="900" height="1200" onerror="this.remove()"></div>
-            <span class="route-code"><svg class="icon"><use href="#i-plane"/></svg>DXB → IST · SAW</span>
-            <h3>Türkiye</h3><p>Istanbul &amp; Cappadocia</p>
-          </a>
-          <a class="route" href="https://www.markhortrips.com/Cms?type=flight">
-            <div class="media" data-tone="sea"><img src="images/destinations/philippines.webp" alt="Limestone lagoons of El Nido, Philippines" loading="lazy" width="900" height="1200" onerror="this.remove()"></div>
-            <span class="route-code"><svg class="icon"><use href="#i-plane"/></svg>DXB → MNL · CEB</span>
-            <h3>Philippines</h3><p>Manila &amp; Cebu</p>
-          </a>
-          <a class="route" href="https://www.markhortrips.com/Cms?type=flight">
-            <div class="media"><img src="images/destinations/united-kingdom.webp" alt="London skyline along the Thames at blue hour" loading="lazy" width="900" height="1200" onerror="this.remove()"></div>
-            <span class="route-code"><svg class="icon"><use href="#i-plane"/></svg>DXB → LHR · MAN</span>
-            <h3>United Kingdom</h3><p>London &amp; Manchester</p>
-          </a>
-        </div>
+        <ol class="route-board" data-stagger>
+          <li>
+            <a class="route-row" href="https://www.markhortrips.com/Cms?type=flight">
+              <span class="route-n">01</span>
+              <span class="route-name">Pakistan</span>
+              <span class="route-meta"><b>DXB <svg class="icon icon-sm"><use href="#i-plane"/></svg> KHI · LHE · ISB</b><small>Karachi, Lahore, Islamabad & more</small></span>
+              <span class="route-dur">Daily direct</span>
+              <span class="route-go" aria-hidden="true"><svg class="icon"><use href="#i-arrow-up-right"/></svg></span>
+              <span class="route-preview media" data-tone="forest" aria-hidden="true"><span class="route-pass"><b>DXB</b><i></i><svg class="icon icon-sm"><use href="#i-plane"/></svg><i></i><b>KHI</b></span></span>
+            </a>
+          </li>
+          <li>
+            <a class="route-row" href="https://www.markhortrips.com/Cms?type=flight">
+              <span class="route-n">02</span>
+              <span class="route-name">Bangladesh</span>
+              <span class="route-meta"><b>DXB <svg class="icon icon-sm"><use href="#i-plane"/></svg> DAC · CGP · ZYL</b><small>Dhaka, Chattogram & Sylhet</small></span>
+              <span class="route-dur">Daily direct</span>
+              <span class="route-go" aria-hidden="true"><svg class="icon"><use href="#i-arrow-up-right"/></svg></span>
+              <span class="route-preview media" data-tone="sea" aria-hidden="true"><span class="route-pass"><b>DXB</b><i></i><svg class="icon icon-sm"><use href="#i-plane"/></svg><i></i><b>DAC</b></span></span>
+            </a>
+          </li>
+          <li>
+            <a class="route-row" href="https://www.markhortrips.com/Cms?type=flight">
+              <span class="route-n">03</span>
+              <span class="route-name">Türkiye</span>
+              <span class="route-meta"><b>DXB <svg class="icon icon-sm"><use href="#i-plane"/></svg> IST · SAW</b><small>Istanbul & Cappadocia</small></span>
+              <span class="route-dur">From 4h 30m</span>
+              <span class="route-go" aria-hidden="true"><svg class="icon"><use href="#i-arrow-up-right"/></svg></span>
+              <span class="route-preview media" data-tone="dusk" aria-hidden="true"><img src="images/destinations/turkey.webp" alt="" loading="lazy" width="900" height="1612" onerror="this.remove()"><span class="route-pass"><b>DXB</b><i></i><svg class="icon icon-sm"><use href="#i-plane"/></svg><i></i><b>IST</b></span></span>
+            </a>
+          </li>
+          <li>
+            <a class="route-row" href="https://www.markhortrips.com/Cms?type=flight">
+              <span class="route-n">04</span>
+              <span class="route-name">Philippines</span>
+              <span class="route-meta"><b>DXB <svg class="icon icon-sm"><use href="#i-plane"/></svg> MNL · CEB</b><small>Manila & Cebu</small></span>
+              <span class="route-dur">From 9h</span>
+              <span class="route-go" aria-hidden="true"><svg class="icon"><use href="#i-arrow-up-right"/></svg></span>
+              <span class="route-preview media" data-tone="sea" aria-hidden="true"><img src="images/destinations/philippines.webp" alt="" loading="lazy" width="900" height="1612" onerror="this.remove()"><span class="route-pass"><b>DXB</b><i></i><svg class="icon icon-sm"><use href="#i-plane"/></svg><i></i><b>MNL</b></span></span>
+            </a>
+          </li>
+          <li>
+            <a class="route-row" href="https://www.markhortrips.com/Cms?type=flight">
+              <span class="route-n">05</span>
+              <span class="route-name">United Kingdom</span>
+              <span class="route-meta"><b>DXB <svg class="icon icon-sm"><use href="#i-plane"/></svg> LHR · MAN</b><small>London & Manchester</small></span>
+              <span class="route-dur">From 7h 30m</span>
+              <span class="route-go" aria-hidden="true"><svg class="icon"><use href="#i-arrow-up-right"/></svg></span>
+              <span class="route-preview media" aria-hidden="true"><span class="route-pass"><b>DXB</b><i></i><svg class="icon icon-sm"><use href="#i-plane"/></svg><i></i><b>LHR</b></span></span>
+            </a>
+          </li>
+        </ol>
       </div>
     </section>
 
@@ -682,7 +706,7 @@
       <div class="container why">
         <div class="why-sticky reveal">
           <span class="eyebrow">Why Markhor</span>
-          <h2 id="why-title" class="display h2" style="margin-top:16px">A travel desk that <em>picks up</em>.</h2>
+          <h2 id="why-title" class="display h2 split" style="margin-top:16px">A travel desk that <em>picks up</em>.</h2>
           <p class="lead">We're a licensed UAE agency with a real office in Sharjah — not a call centre. When plans change, you talk to the people who booked your trip.</p>
           <div class="secure">
             <span class="secure-badge"><svg class="icon"><use href="#i-lock"/></svg>256-bit SSL</span>
@@ -690,11 +714,11 @@
             <span class="secure-badge"><svg class="icon"><use href="#i-check"/></svg>Visa · Mastercard</span>
           </div>
         </div>
-        <div class="why-list">
-          <div class="why-item reveal"><span class="why-num">01</span><div><h3>Save time, search once</h3><p>Flights, hotels, visas and insurance in one place — compare, book and get your e-ticket in minutes, not afternoons.</p></div></div>
-          <div class="why-item reveal"><span class="why-num">02</span><div><h3>Real people, around the clock</h3><p>Missed connection at midnight? Call, WhatsApp or email and a Markhor travel expert will sort it — 24 hours a day, 7 days a week.</p></div></div>
-          <div class="why-item reveal"><span class="why-num">03</span><div><h3>Secure, flexible payment</h3><p>Pay by card on an encrypted checkout, or spread the cost over interest-free instalments with Tabby and Tamara.</p></div></div>
-          <div class="why-item reveal"><span class="why-num">04</span><div><h3>For travellers and travel agents</h3><p>Our B2B platform gives partner agencies live inventory, net fares and a dedicated support line.</p><p style="margin-top:14px"><a class="link-arrow" href="https://www.markhortrips.com/login/TravelAgentRegistration">Become a partner agent <svg class="icon icon-sm"><use href="#i-arrow"/></svg></a></p></div></div>
+        <div class="why-list" data-stagger>
+          <div class="why-item"><span class="why-num">01</span><div><h3>Save time, search once</h3><p>Flights, hotels, visas and insurance in one place — compare, book and get your e-ticket in minutes, not afternoons.</p></div></div>
+          <div class="why-item"><span class="why-num">02</span><div><h3>Real people, around the clock</h3><p>Missed connection at midnight? Call, WhatsApp or email and a Markhor travel expert will sort it — 24 hours a day, 7 days a week.</p></div></div>
+          <div class="why-item"><span class="why-num">03</span><div><h3>Secure, flexible payment</h3><p>Pay by card on an encrypted checkout, or spread the cost over interest-free instalments with Tabby and Tamara.</p></div></div>
+          <div class="why-item"><span class="why-num">04</span><div><h3>For travellers and travel agents</h3><p>Our B2B platform gives partner agencies live inventory, net fares and a dedicated support line.</p><p style="margin-top:14px"><a class="link-arrow" href="https://www.markhortrips.com/login/TravelAgentRegistration">Become a partner agent <svg class="icon icon-sm"><use href="#i-arrow"/></svg></a></p></div></div>
         </div>
       </div>
     </section>
@@ -744,7 +768,7 @@
       <div class="container faq-grid">
         <div class="reveal">
           <span class="eyebrow">Good to know</span>
-          <h2 id="faq-title" class="display h2" style="margin-top:16px">Questions, <em>answered</em>.</h2>
+          <h2 id="faq-title" class="display h2 split" style="margin-top:16px">Questions, <em>answered</em>.</h2>
           <p class="lead">Can't find what you need? Our team replies on WhatsApp in minutes.</p>
           <p style="margin-top:24px"><a class="link-arrow" href="https://www.markhortrips.com/cms/faq">Read all FAQs <svg class="icon icon-sm"><use href="#i-arrow"/></svg></a></p>
         </div>
@@ -777,7 +801,7 @@
     <section aria-labelledby="cta-title">
       <div class="container">
         <div class="cta reveal">
-          <img src="images/hero/overwater-resort-1280.webp" alt="" loading="lazy" width="1280" height="400">
+          <img src="images/hero/overwater-resort-1280.webp" alt="" data-parallax="0.12" loading="lazy" width="1280" height="400">
           <span class="eyebrow" style="color:#ffd2b8">Talk to a travel expert</span>
           <h2 id="cta-title" class="display" style="margin-top:16px">Tell us the dream. <em>We'll do the rest.</em></h2>
           <p>Share your dates and budget — we'll come back with options, usually within the hour.</p>

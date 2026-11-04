@@ -15,7 +15,12 @@ images/destinations/ ←
 images/app/       ←
 ```
 
-## Images still needed
+## Images
+
+Added: Thailand, Armenia, Azerbaijan, Umrah coach, UAE staycation, Türkiye, Philippines, app mockup.
+**Still needed:** `pakistan.webp`, `bangladesh.webp`, `united-kingdom.webp` (used as hover previews on the routes list).
+
+### Prompts
 
 Every image slot already has a designed gradient fallback, so the page looks finished without them. Save each image
 as **.webp** with the **exact file name** below and push — it appears automatically, no code change.
