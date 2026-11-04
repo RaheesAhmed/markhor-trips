@@ -1,0 +1,4 @@
+{"level":"info","message":"Context Engine initialized","service":"context-engine-mcp","timestamp":"2026-11-04 17:10:02"}
+{"level":"info","message":"Logger configuration updated","newLogLevel":"info","service":"context-engine-mcp","timestamp":"2026-11-04 17:10:02"}
+{"level":"info","message":"Context Engine initialized","service":"context-engine-mcp","timestamp":"2026-11-04 17:10:02"}
+{"level":"info","message":"Context Engine MCP Server v2.0.0 started successfully","service":"context-engine-mcp","timestamp":"2026-11-04 17:10:02"}
